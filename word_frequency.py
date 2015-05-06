@@ -19,7 +19,7 @@ a list of words
 def clean_text(string):
     string = string.strip()
     string = string.lower()
-    string = re.sub(r'[^A-Za-z\']+',',',string)
+    string = re.sub(r'[^A-Za-z]+',',',string)
     string = string.split(',')
 
     return string

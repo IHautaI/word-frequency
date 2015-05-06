@@ -1,19 +1,35 @@
 import sys
+from operator import itemgetter
 
 from word_frequency import word_frequency,clean_text
 
 
+##############################################
+# Takes 1 required and 1 optional file input #
+# first is file to count from                #
+# second is file of csv forbidden words      #
+##############################################
+
+
+"""
+Formats and prints Histogram from dictionary of word counts
+"""
 def printer(word_dict):
-    key_list = sorted(word_dict,key=lambda x: word_dict[x], reverse=True)
+    word_list = [(k,v) for k,v in word_dict.items()]
+    word_list = sorted(word_list, key=lambda x: x[1],reverse=True)
+
     maximum = max(word_dict.values())
     minimum = min(word_dict.values())
-    scale = (maximum-minimum)
+    scale = (maximum-minimum)/50
 
-    for index in range(20):#len(key_list)):
-        num = int(50*word_dict[key_list[index]]/scale)
-        print(key_list[index] + ' :' + '#'*(num+1))
+    for i in range(20): # or len(word_list) ... but that's too much to read
+        print('{}: '.format(word_list[i][0]) + '#'*int(1+word_list[i][1]/scale))
 
 
+"""
+Opens the files, feeds them to word_frequency/clean_text
+and calls printer when done
+"""
 def main():
     input_string = ''
     forbidden = None
@@ -37,11 +53,6 @@ def main():
 
 
     printer(word_dict)
-
-
-
-
-
 
 
 if __name__ == '__main__':

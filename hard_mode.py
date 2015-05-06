@@ -27,8 +27,8 @@ def printer(word_dict):
 
 
 """
-Opens the files, feeds them to word_frequency/clean_text
-and calls printer when done
+Opens the files, feeds them to clean_text/word_frequency
+and calls printer on the result
 """
 def main():
     input_string = ''

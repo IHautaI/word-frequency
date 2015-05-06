@@ -5,9 +5,10 @@ Cleans input
 processes input
 into dictionary
 """
-def word_frequency(string,forbidden):
+def word_frequency(string,forbidden=None):
     string = clean_text(string)
     return dict_word_counts(string,forbidden)
+
 
 """
 normalizes string input
@@ -16,11 +17,11 @@ whitespace and returns
 a list of words
 """
 def clean_text(string):
-    string = re.sub(r'[\s]+',' ',string)
-    #string = string.strip()
-    string.lower()
-    string= re.sub(r'[^A-Za-z\s]','',string) #drop nonalphabeticals
-    string = string.split(" ")
+    string = string.strip()
+    string = string.lower()
+    string = re.sub(r'[^A-Za-z\']+',',',string)
+    string = string.split(',')
+
     return string
 
 """
@@ -31,14 +32,23 @@ to the dictionary
 with value = number of instances
 in the input string
 """
-def dict_word_counts(words, forbidden=None):
+def dict_word_counts(string, forbidden):
     counts={}
 
-    for word in words:
-        if word not in counts and word not in forbidden:
-            counts[word]=len(list(filter(lambda x: x==word,words)))
+    if forbidden != None:
+        for word in string:
+            if word not in counts and word not in forbidden:
 
-    return counts
+                counts[word]=len(list(filter(lambda x: x==word, string)))
+
+        return counts
+
+    else:
+        for word in string:
+            if word not in counts:
+                counts[word]=len(list(filter(lambda x: x==word, string)))
+
+        return counts
 
 
 if __name__ == '__main__':

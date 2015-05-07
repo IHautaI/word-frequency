@@ -1,5 +1,5 @@
 import sys
-from operator import itemgetter
+#from operator import itemgetter   tested with this
 
 from word_frequency import word_frequency,clean_text
 
@@ -23,7 +23,7 @@ def printer(word_dict):
     scale = (maximum-minimum)/50
 
     for i in range(20): # or len(word_list) ... but that's too much to read
-        print('{}: '.format(word_list[i][0]) + '#'*int(1+word_list[i][1]/scale))
+        print('{}: '.format(word_list[i][0]) + '#'*int(1+word_list[i][1]/scale) + '({})'.format(word_list[i][1]))
 
 
 """
@@ -36,8 +36,11 @@ def main():
 
     if len(sys.argv)>2:
         with open(sys.argv[2], 'r') as second_file:
-            forbidden = second_file.read()
-            forbidden = clean_text(forbidden)
+            forbidden = []
+            lines = second_file.readlines()
+            for line in lines:
+                forbidden += clean_text(line)
+                #print(clean_text(line))
 
     with open(sys.argv[1], 'r') as input_file:
         input_strings = input_file.readlines()

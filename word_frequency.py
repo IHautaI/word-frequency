@@ -24,6 +24,13 @@ def clean_text(string):
     string = string.strip(r',')
     string = string.split(',')
 
+    for item in string:
+        if item == '':
+            string.remove(item)
+
+#    if string == []:
+#        return None
+
     return string
 """
 Creates a dictionary
@@ -34,6 +41,8 @@ with value = number of instances
 in the input string
 """
 def dict_word_counts(string, forbidden):
+    if string == None:
+        return {}
     counts={}
     #print(string)
     if forbidden != None:

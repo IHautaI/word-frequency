@@ -39,8 +39,8 @@ def main():
             forbidden = []
             lines = second_file.readlines()
             for line in lines:
-                forbidden += clean_text(line)
-                #print(clean_text(line))
+                if clean_text(line) != []:
+                    forbidden += clean_text(line)
 
     with open(sys.argv[1], 'r') as input_file:
         input_strings = input_file.readlines()
@@ -49,7 +49,7 @@ def main():
     for line in input_strings:
         new_dict = word_frequency(line,forbidden)
         for key,value in new_dict.items():
-            if key in word_dict and key != '':
+            if key in word_dict:# and key != '':
                 word_dict[key] += value
             else:
                 word_dict[key] = value

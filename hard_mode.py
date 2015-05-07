@@ -49,7 +49,7 @@ def main():
     for line in input_strings:
         new_dict = word_frequency(line,forbidden)
         for key,value in new_dict.items():
-            if key in word_dict:# and key != '':
+            if key in word_dict:
                 word_dict[key] += value
             else:
                 word_dict[key] = value

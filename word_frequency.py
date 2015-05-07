@@ -18,7 +18,6 @@ whitespace and returns
 a list of words
 """
 def clean_text(string):
-    #string = string.strip(r'[^A-Za-z]+')
     string = string.lower()
     string = re.sub(r'[^A-Za-z]+', ',', string)
     string = string.strip(r',')
@@ -27,9 +26,6 @@ def clean_text(string):
     for item in string:
         if item == '':
             string.remove(item)
-
-#    if string == []:
-#        return None
 
     return string
 """
@@ -43,8 +39,9 @@ in the input string
 def dict_word_counts(string, forbidden):
     if string == None:
         return {}
+        
     counts={}
-    #print(string)
+
     if forbidden != None:
         for word in string:
             if word not in counts and word not in forbidden:
